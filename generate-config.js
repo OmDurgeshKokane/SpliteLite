@@ -21,19 +21,39 @@ export const CONFIG = {
 };
 `;
 
-// 3. Write the file
-const dir = path.join(__dirname, 'assets', 'js');
-const filePath = path.join(dir, 'config.js');
+// 3. BUILD PROCESS
+const publicDir = path.join(__dirname, 'public');
+const assetsDir = path.join(publicDir, 'assets');
+const jsDir = path.join(assetsDir, 'js');
+const configFile = path.join(jsDir, 'config.js');
 
 try {
-    // Ensure directory exists
-    if (!fs.existsSync(dir)) {
-        fs.mkdirSync(dir, { recursive: true });
-    }
+    console.log('🚀 Starting Build Process...');
 
-    fs.writeFileSync(filePath, content);
-    console.log('✅ assets/js/config.js successfully generated from Environment Variables.');
+    // A. Clean/Create Public Directory
+    if (fs.existsSync(publicDir)) {
+        fs.rmSync(publicDir, { recursive: true, force: true });
+    }
+    fs.mkdirSync(publicDir);
+
+    // B. Copy Static Files
+    console.log('📂 Copying files to public/...');
+
+    // Copy HTML files
+    fs.copyFileSync(path.join(__dirname, 'index.html'), path.join(publicDir, 'index.html'));
+    fs.copyFileSync(path.join(__dirname, 'about.html'), path.join(publicDir, 'about.html'));
+
+    // Copy Assets (Recursive)
+    fs.cpSync(path.join(__dirname, 'assets'), assetsDir, { recursive: true });
+
+    // C. Generate Config File (Securely)
+    // Note: We overwrite the one in public/assets/js, not source
+    console.log('🔐 Generating secure config.js...');
+    fs.writeFileSync(configFile, content);
+
+    console.log('✅ Build Complete! Output directory: ./public');
+
 } catch (error) {
-    console.error('❌ Error generating config.js:', error);
+    console.error('❌ Build Failed:', error);
     process.exit(1);
 }
