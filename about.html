@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | SplitLite</title>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/about.css">
+    <link rel="stylesheet" href="assets/css/chat.css">
+</head>
+<body class="light-mode">
+
+    <!-- Background Elements -->
+    <div class="bg-gradient"></div>
+    <div class="noise-overlay"></div>
+
+    <nav class="navbar glass">
+        <div class="logo">
+            <i class="fa-solid fa-bolt"></i> SplitLite
+        </div>
+        <div class="nav-links">
+            <!-- Sound Toggle injected here -->
+            <a href="index.html" class="btn btn-sm btn-primary" style="box-shadow: 0 4px 15px rgba(var(--primary-rgb), 0.4);">Home</a>
+            <button class="icon-btn" id="theme-toggle"><i class="fa-solid fa-moon"></i></button>
+        </div>
+
+    </nav>
+
+    <!-- Premium Hamburger (Outside Nav for Z-Index) -->
+    <div class="hamburger">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu glass">
+        <!-- Content injected by JS -->
+    </div>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="about-hero">
+            <h1 class="hero-title">Calculated <span class="gradient-text">Friendships</span></h1>
+            <p class="hero-subtitle">We believe money shouldn't ruin a good time.</p>
+        </section>
+
+        <!-- The Story -->
+        <section class="about-story glass-card">
+            <h2>The Story</h2>
+            <p>
+                It started with a simple road trip and a messy spreadsheet. 
+                We realized that tracking expenses was the quickest way to kill the vibe.
+                <b>SplitLite</b> was born from the idea that clarity brings peace using <b>AI</b>.
+            </p>
+            <div class="stats-row">
+                <div class="stat-item">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Frontend</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">0s</span>
+                    <span class="stat-label">Latency</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-num">AI</span>
+                    <span class="stat-label">Powered</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Founder -->
+        <section class="founder-section">
+            <div class="founder-card glass">
+                <div class="founder-img-wrapper">
+                    <img src="assets/img/om_kokane.jpg" alt="Om Kokane" class="founder-img">
+                    <div class="img-overlay"></div>
+                </div>
+                <div class="founder-info">
+                    <span class="role-badge">Founder & Lead Engineer</span>
+                    <h2>Om Kokane</h2>
+                    <p class="bio">
+                        A visionary developer with a passion for creating interfaces that feel intuitive and alive. 
+                        Om built SplitLite to solve a personal problem: making shared finances transparent without losing the human connection.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-icon"><i class="fa-brands fa-github"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="#" class="social-icon"><i class="fa-brands fa-twitter"></i></a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Tech Stack -->
+        <section class="tech-stack">
+            <h3>Built With Passion & Code</h3>
+            <div class="tech-icons">
+                <i class="fa-brands fa-js"></i>
+                <i class="fa-brands fa-html5"></i>
+                <i class="fa-brands fa-css3-alt"></i>
+                <i class="fa-solid fa-cube"></i> <!-- Three.js -->
+                <i class="fa-solid fa-robot"></i> <!-- Gemini -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer style="text-align: center; padding: 2rem; color: var(--text-light); font-weight: 500;">
+        Made in India 🇮🇳 with <i class="fa-solid fa-heart" style="color: var(--danger)"></i>
+    </footer>
+
+    <!-- Toasts -->
+    <div id="toast-container"></div>
+
+    <!-- Marked.js for Chatbot -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+    <!-- Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <!-- Main Logic -->
+    <script type="module" src="assets/js/about_logic.js"></script>
+
+    <script>
+        // Inline script for page-specific animations
+        gsap.registerPlugin(ScrollTrigger);
+        // ... (GSAP animations remain)
+
+        // Animations
+        gsap.from('.hero-title', {
+            y: 50,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'power4.out'
+        });
+
+        gsap.from('.hero-subtitle', {
+            y: 30,
+            opacity: 0,
+            duration: 1,
+            delay: 0.3,
+            ease: 'power3.out'
+        });
+
+        gsap.from('.about-story', {
+            scrollTrigger: {
+                trigger: '.about-story',
+                start: 'top 80%'
+            },
+            y: 50,
+            opacity: 0,
+            duration: 1
+        });
+
+        gsap.from('.founder-card', {
+            scrollTrigger: {
+                trigger: '.founder-card',
+                start: 'top 75%'
+            },
+            scale: 0.9,
+            opacity: 0,
+            duration: 1.2,
+            ease: 'back.out(1.7)'
+        });
+
+        gsap.from('.social-icon', {
+            scrollTrigger: {
+                trigger: '.founder-info',
+                start: 'top 85%'
+            },
+            y: 20,
+            opacity: 0,
+            stagger: 0.1,
+            duration: 0.5
+        });
+    </script>
+</body>
+</html>

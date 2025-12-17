@@ -1,0 +1,10 @@
+
+# Ignore Documentation
+*.md
+
+# Secret Configuration
+assets/js/config.js
+
+# System
+.DS_Store
+Thumbs.db
