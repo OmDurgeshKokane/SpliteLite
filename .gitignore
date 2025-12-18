@@ -1,6 +1,7 @@
 
 # Ignore Documentation
-*.md
+# Ignore Documentation
+TECHNICAL_GUIDE.md
 
 # Secret Configuration
 assets/js/config.js
@@ -8,3 +9,6 @@ assets/js/config.js
 # System
 .DS_Store
 Thumbs.db
+
+# Project Management
+task.md
